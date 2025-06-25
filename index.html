@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Illustrated Guide to Mutual Funds</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdfcfe;
+            color: #1e293b; /* slate-800 */
+        }
+       .gradient-text {
+            background: linear-gradient(to right, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+       .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #334155; /* slate-700 */
+        }
+       .section-subtitle {
+            font-size: 1.125rem;
+            text-align: center;
+            color: #64748b; /* slate-500 */
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem;
+        }
+       .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+            border: 1px solid #e2e8f0; /* slate-200 */
+        }
+       .icon-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            background-color: #eef2ff; /* indigo-100 */
+            color: #4f46e5; /* indigo-600 */
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+       .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+           .chart-container {
+                height: 450px;
+            }
+        }
+       .step-line {
+            position: absolute;
+            left: 1.5rem;
+            top: 2rem;
+            bottom: -2.5rem;
+            width: 4px;
+            background-color: #eef2ff; /* indigo-100 */
+            z-index: -1;
+        }
+       .step-circle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border: 4px solid #eef2ff; /* indigo-100 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-12 md:py-20 max-w-6xl">
+
+        <header class="text-center mb-24">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+                The Illustrated Guide to <span class="gradient-text">Mutual Funds</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+                Unlock the world of investing with one of its most powerful tools. This guide breaks down everything a beginner in the USA needs to know, from core concepts to your first investment.
+            </p>
+        </header>
+
+        <section class="mb-24">
+            <h2 class="section-title">What is a Mutual Fund, Really?</h2>
+            <p class="section-subtitle">
+                At its heart, a mutual fund is a company that pools money from many people to buy a wide variety of investments. Instead of buying one stock, you buy a share of the fund itself, instantly owning a small piece of everything it holds.
+            </p>
+            <div class="card">
+                <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+                    <div class="flex-shrink-0">
+                        <span class="text-8xl md:text-9xl">🥧</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">The Apple Pie Analogy</h3>
+                        <p class="text-slate-600">
+                            Imagine wanting to bake a world-class pie that needs ten different rare apples and exotic spices. Buying them all yourself would be incredibly expensive. Instead, you and your friends chip in and hire a professional baker. The baker, with their expertise and ability to buy ingredients in bulk, creates a magnificent pie for everyone to share.
+                            <br><br>
+                            <strong class="text-indigo-600">The mutual fund is the delicious, professionally-made pie.</strong> You are one of the friends who chipped in.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="card">
+                    <div class="icon-circle mx-auto">🤝</div>
+                    <h3 class="text-xl font-bold text-slate-800">Pooled Money</h3>
+                    <p class="text-slate-600">Your money is combined with thousands of other investors, creating a large, powerful investment fund.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-circle mx-auto">🧺</div>
+                    <h3 class="text-xl font-bold text-slate-800">Instant Diversification</h3>
+                    <p class="text-slate-600">That pool of money buys hundreds of different stocks or bonds. This spreads out risk—the "don't put all your eggs in one basket" principle.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-circle mx-auto">🧑‍💼</div>
+                    <h3 class="text-xl font-bold text-slate-800">Professional Management</h3>
+                    <p class="text-slate-600">A full-time fund manager and their team research, select, and manage all the investments for you.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <h2 class="section-title">The Engine Room: How Funds are Priced</h2>
+            <p class="section-subtitle">
+                Unlike a stock, whose price changes every second, a mutual fund's price is calculated only once per day after the market closes. This price is called the Net Asset Value (NAV).
+            </p>
+            <div class="card">
+                <h3 class="text-2xl font-bold text-center text-slate-800 mb-8">The Daily NAV Calculation</h3>
+                <div class="flex flex-col md:flex-row items-center justify-around gap-4 text-center font-semibold text-slate-700">
+                    <div class="p-4 rounded-lg bg-slate-50 w-full md:w-auto">
+                        <p class="text-4xl">🏢</p>
+                        <p class="mt-2">Total Value of All Fund Investments</p>
+                    </div>
+                    <div class="text-4xl font-bold text-indigo-400">-</div>
+                    <div class="p-4 rounded-lg bg-slate-50 w-full md:w-auto">
+                        <p class="text-4xl">🧾</p>
+                        <p class="mt-2">Fund's Liabilities & Expenses</p>
+                    </div>
+                    <div class="text-4xl font-bold text-indigo-400">÷</div>
+                    <div class="p-4 rounded-lg bg-slate-50 w-full md:w-auto">
+                        <p class="text-4xl">📊</p>
+                        <p class="mt-2">Total Number of Investor Shares</p>
+                    </div>
+                    <div class="text-4xl font-bold text-indigo-400">=</div>
+                    <div class="bg-indigo-600 text-white p-6 rounded-xl w-full md:w-auto">
+                        <p class="text-4xl font-extrabold">$10.00</p>
+                        <p class="font-bold mt-1">Price Per Share (NAV)</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-500 text-center mt-8">All buy and sell orders placed during the day are executed at this single, end-of-day price. This design encourages long-term investing over short-term speculation.</p>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <h2 class="section-title">A Tour of the Showroom</h2>
+            <p class="section-subtitle">
+                Just like cars, there are different funds for different needs. Most fall into four main categories, designed to meet different financial goals and risk tolerances.
+            </p>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="card flex flex-col justify-center">
+                    <h3 class="text-xl font-bold text-slate-800 text-center mb-4">U.S. Mutual Fund Assets by Type</h3>
+                    <div class="chart-container" style="height: 300px; max-height: 300px;">
+                        <canvas id="fundTypesChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-400 text-center mt-2">Illustrative data based on industry reports.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="card text-center">
+                        <p class="text-5xl mb-3">📈</p>
+                        <h4 class="text-lg font-bold">Stock Funds</h4>
+                        <p class="text-sm text-slate-600"><strong>Goal:</strong> Growth<br><strong>Risk:</strong> High</p>
+                    </div>
+                    <div class="card text-center">
+                        <p class="text-5xl mb-3">⚖️</p>
+                        <h4 class="text-lg font-bold">Bond Funds</h4>
+                        <p class="text-sm text-slate-600"><strong>Goal:</strong> Income<br><strong>Risk:</strong> Low-Medium</p>
+                    </div>
+                    <div class="card text-center">
+                        <p class="text-5xl mb-3">🛡️</p>
+                        <h4 class="text-lg font-bold">Money Market</h4>
+                        <p class="text-sm text-slate-600"><strong>Goal:</strong> Safety<br><strong>Risk:</strong> Very Low</p>
+                    </div>
+                    <div class="card text-center">
+                        <p class="text-5xl mb-3">🧩</p>
+                        <h4 class="text-lg font-bold">Balanced Funds</h4>
+                        <p class="text-sm text-slate-600"><strong>Goal:</strong> Mix<br><strong>Risk:</strong> Varies</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <h2 class="section-title">The Great Debate: Active vs. Passive</h2>
+            <p class="section-subtitle">
+                This is one of the most important choices an investor makes. Do you hire a manager to try and <strong class="text-indigo-600">beat the market</strong> (Active), or simply aim to <strong class="text-purple-600">match the market</strong> as cheaply as possible (Passive)?
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="p-8 border-2 border-indigo-500 rounded-2xl bg-indigo-50">
+                    <h3 class="text-2xl font-bold text-indigo-700 mb-3">Active Management</h3>
+                    <p class="font-semibold mb-2">Goal: Beat the market.</p>
+                    <p class="text-slate-600 mb-4">A professional manager actively picks investments they believe will outperform. They can react to market changes, potentially protecting against downturns.</p>
+                    <p class="font-semibold text-red-600">The Catch: Higher fees are required to pay for the expertise, which creates a high hurdle to overcome.</p>
+                </div>
+                <div class="p-8 border-2 border-purple-500 rounded-2xl bg-purple-50">
+                    <h3 class="text-2xl font-bold text-purple-700 mb-3">Passive (Index) Management</h3>
+                    <p class="font-semibold mb-2">Goal: Match the market.</p>
+                    <p class="text-slate-600 mb-4">The fund simply buys all the investments in a specific market index (like the S&P 500) and holds them. It's an automated, hands-off approach.</p>
+                    <p class="font-semibold text-green-600">The Benefit: Extremely low costs, transparency, and tax efficiency.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3 class="text-xl font-bold text-slate-800 text-center mb-4">The Verdict: The Surprising Reality</h3>
+                <p class="text-slate-600 mb-6 text-center max-w-2xl mx-auto">Investors pay higher fees for active funds hoping for better returns. However, decades of data show the opposite is usually true over the long term, primarily because of costs.</p>
+                <div class="chart-container" style="height: 250px; max-height: 250px;">
+                    <canvas id="activePassiveChart"></canvas>
+                </div>
+                <p class="text-xs text-slate-400 text-center mt-2">Illustrative data based on long-term findings from S&P SPIVA reports.</p>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <h2 class="section-title">The Devastating Power of Fees</h2>
+            <p class="section-subtitle">
+                The single most important factor you can control is cost. A fee that seems tiny has a massive corrosive effect over time, because it reduces the money you have to grow in all future years. This is the magic and tragedy of compounding.
+            </p>
+            <div class="card">
+                <h3 class="text-xl font-bold text-slate-800 text-center mb-6">The Growth of $10,000: Low Fee vs. High Fee</h3>
+                <div class="chart-container">
+                    <canvas id="feeImpactChart"></canvas>
+                </div>
+                <div class="mt-8 text-center bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
+                    <p class="text-lg text-slate-700">After 40 years, that "tiny" 1% difference in fees results in:</p>
+                    <p class="text-5xl md:text-6xl font-extrabold text-red-600 my-2">$61,125</p>
+                    <p class="text-lg text-slate-700">of your potential wealth being lost.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mb-24">
+            <h2 class="section-title">How You Get Paid (and Taxed)</h2>
+            <p class="section-subtitle">
+                There are three ways to make money from a mutual fund. In a standard brokerage account, each has different tax rules in the USA.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card text-center">
+                    <p class="text-5xl mb-4">💵</p>
+                    <h3 class="text-lg font-bold">Dividend & Interest Payments</h3>
+                    <p class="text-sm text-slate-600">The fund passes along earnings from the stocks (dividends) and bonds (interest) it holds. These are typically taxed as ordinary income.</p>
+                </div>
+                <div class="card text-center">
+                    <p class="text-5xl mb-4">📈</p>
+                    <h3 class="text-lg font-bold">Capital Gains Distributions</h3>
+                    <p class="text-sm text-slate-600">When the fund sells an investment for a profit, it must distribute that gain to you. This is taxable, even if you don't sell your shares.</p>
+                </div>
+                <div class="card text-center">
+                    <p class="text-5xl mb-4">💰</p>
+                    <h3 class="text-lg font-bold">Selling Your Shares</h3>
+                    <p class="text-sm text-slate-600">If you sell your fund shares for more than you paid, you realize your own capital gain. The tax rate depends on how long you held the shares.</p>
+                </div>
+            </div>
+            <div class="mt-8 p-6 bg-indigo-50 border-l-4 border-indigo-400 text-indigo-800 rounded-r-lg">
+                <h4 class="font-bold">The Simple Solution: Tax-Advantaged Accounts</h4>
+                <p class="text-sm">The easiest way to simplify this complexity is to invest through a retirement account like a <strong>401(k) or an IRA</strong>. Inside these accounts, your investments grow without you having to pay annual taxes on distributions, allowing your money to compound much faster.</p>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <h2 class="section-title">You're Protected by Rules</h2>
+            <p class="section-subtitle">
+                Investing requires trust. In the U.S., a robust regulatory framework exists to protect investors, promote fairness, and ensure you get the information you need to make sound decisions.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">The SEC: The Market's Watchdog</h3>
+                    <p class="text-slate-600">The Securities and Exchange Commission (SEC) requires funds to register, disclose all key information truthfully, and price their shares daily. Their job is to guarantee <strong class="text-indigo-600">disclosure</strong>, not performance.</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">FINRA: Regulating the Sellers</h3>
+                    <p class="text-slate-600">The Financial Industry Regulatory Authority (FINRA) oversees the brokers who sell funds, setting rules for advertising and sales charges to ensure they act fairly and honestly.</p>
+                </div>
+            </div>
+            <div class="mt-8 card text-center">
+                <p class="text-5xl mb-4">📜</p>
+                <h3 class="text-xl font-bold text-slate-800">Your Most Important Document: The Prospectus</h3>
+                <p class="text-slate-600 max-w-2xl mx-auto">Every fund must provide this legal document. It's the official rulebook, detailing the fund's goals, strategies, risks, and—most importantly—all of its fees.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Your First Investment in 4 Steps</h2>
+            <p class="section-subtitle">
+                Moving from knowledge to action is the most important step. Here is a clear, practical path to making your first mutual fund investment.
+            </p>
+            <div class="relative pl-16">
+                <div class="step-line"></div>
+                <div class="mb-12 relative">
+                    <div class="step-circle">1</div>
+                    <h3 class="text-2xl font-bold text-slate-800">Define Your Goals & Budget</h3>
+                    <p class="text-slate-600">What is this money for? Retirement in 30 years allows for more risk (stock funds). A house down payment in 3 years requires more safety (bond funds). Aim to invest at least 15% of your income for retirement.</p>
+                </div>
+                <div class="mb-12 relative">
+                    <div class="step-circle">2</div>
+                    <h3 class="text-2xl font-bold text-slate-800">Choose Your Account</h3>
+                    <p class="text-slate-600">The account type is critical. Follow this priority:<br>
+                        <strong>First:</strong> A workplace 401(k), especially if there's an employer match. It's free money!<br>
+                        <strong>Next:</strong> An IRA (Traditional or Roth) for powerful tax advantages.<br>
+                        <strong>Then:</strong> A standard brokerage account for other goals.
+                    </p>
+                </div>
+                <div class="mb-12 relative">
+                    <div class="step-circle">3</div>
+                    <h3 class="text-2xl font-bold text-slate-800">Select Your First Fund</h3>
+                    <p class="text-slate-600">For most beginners, a <strong class="text-indigo-600">low-cost, broadly diversified index fund</strong> (like an S&P 500 or Total Stock Market fund) is a fantastic starting point. Look for funds with an expense ratio below 0.20% and no sales loads.</p>
+                </div>
+                <div class="relative">
+                    <div class="step-circle">4</div>
+                    <h3 class="text-2xl font-bold text-slate-800">Place Your Order</h3>
+                    <p class="text-slate-600">Open an account with a brokerage, enter the fund's ticker symbol (e.g., FXAIX), and the dollar amount. Always choose to <strong class="text-indigo-600">reinvest all dividends and capital gains</strong> to maximize growth. Congratulations, you're an investor!</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+<script>
+    // Chart.js configurations
+    const chartFont = "'Poppins', sans-serif";
+
+    // Chart 1: Fund Types Donut Chart
+    const fundTypesCtx = document.getElementById('fundTypesChart');
+    if (fundTypesCtx) {
+        new Chart(fundTypesCtx, {
+            type: 'doughnut',
+            data: {
+                labels:,
+                datasets:, // Illustrative percentages
+                    backgroundColor: ['#4f46e5', '#7c3aed', '#a78bfa', '#c4b5fd'],
+                    borderColor: '#fdfcfe',
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { font: { family: chartFont } }
+                    }
+                }
+            }
+        });
+    }
+
+    // Chart 2: Active vs Passive Bar Chart
+    const activePassiveCtx = document.getElementById('activePassiveChart');
+    if (activePassiveCtx) {
+        new Chart(activePassiveCtx, {
+            type: 'bar',
+            data: {
+                labels:,
+                datasets:,
+                    backgroundColor: '#a78bfa',
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: value => value + "%",
+                            font: { family: chartFont }
+                        }
+                    },
+                    y: { ticks: { font: { family: chartFont } } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: context => ` ${context.formattedValue}% of funds underperformed their benchmark.`
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Chart 3: Fee Impact Line Chart
+    const feeImpactCtx = document.getElementById('feeImpactChart');
+    if (feeImpactCtx) {
+        const years = Array.from({length: 41}, (_, i) => i);
+        const feeData = { lowFee:, highFee: };
+        let lowFeeBalance = 10000;
+        let highFeeBalance = 10000;
+        
+        for (let i = 0; i <= 40; i++) {
+            feeData.lowFee.push(lowFeeBalance);
+            feeData.highFee.push(highFeeBalance);
+            lowFeeBalance *= (1 + 0.08 - 0.0025); // 8% return, 0.25% fee
+            highFeeBalance *= (1 + 0.08 - 0.0125); // 8% return, 1.25% fee
+        }
+
+        new Chart(feeImpactCtx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets:
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: value => '$' + (value / 1000) + 'k',
+                            font: { family: chartFont }
+                        }
+                    },
+                    x: {
+                        title: { display: true, text: 'Investment Years', font: { family: chartFont } },
+                        ticks: { font: { family: chartFont } }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { font: { family: chartFont } } },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                           label: context => {
+                               let label = context.dataset.label |
+| '';
+                               if (label) { label += ': '; }
+                               if (context.parsed.y!== null) {
+                                   label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(context.parsed.y);
+                               }
+                               return label;
+                           }
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
